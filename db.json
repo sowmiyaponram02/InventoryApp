@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "code": "p1",
+      "name": "pen",
+      "quantity": "56",
+      "unitPrice": "5"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

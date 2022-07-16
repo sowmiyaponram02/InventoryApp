@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-sm bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <h1 style="color:white;">Inventory Management</h1>
+       </div>
+       <div class="d-flex">
+        <button  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onAddDetail()" class="btn btn-success"> Add Item</button>
+      </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Item Code</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Per Unit Price</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of listItems">
+            <td>{{item.id}}</td>
+            <td>{{item.code}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.unitPrice}}</td>
+            <td>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(item)" class="btn btn-info">Edit</button>
+                <button class="btn btn-danger" (click)="DeleteItem(item.id)" style="margin-left:5px">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Item to Inventory</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="inventoryForm">
+                <input type="hidden" class="form-control" id="Id">
+                <div class="mb-3">
+                  <label for="Code" class="form-label">Item Code</label>
+                  <input type="text" formControlName="code" class="form-control" id="code">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="Name" class="form-label">Item Name</label>
+                  <input type="text" formControlName="name" class="form-control" id="Name">
+                </div>
+                <div class="mb-3">
+                    <label for="Quantity" class="form-label">Quantity</label>
+                    <input type="text" formControlName="quantity" class="form-control" id="Quantity">
+                </div>
+                <div class="mb-3">
+                    <label for="UnitPrice" class="form-label">Unit Price</label>
+                    <input type="text" formControlName="unitPrice" class="form-control" id="UnitPrice">
+                  </div>
+             </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf="showAdd" class="btn btn-primary" (click)="AddItemDetails()">Save</button>
+          <button type="button" *ngIf="showUpdate" class="btn btn-primary" (click)="UpdateItemDetails()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
